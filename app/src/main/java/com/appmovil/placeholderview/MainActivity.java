@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements Asynchtask {
         for(int i=0; i< JSONlista.length();i++){
             JSONObject comment=  JSONlista.getJSONObject(i);
             mGalleryView
-                    .addView(new GalleryImage(this.getApplicationContext(), mGalleryView, comment.getString("portada").toString()));
+                    .addView(new GalleryImage(this.getApplicationContext(), mGalleryView, comment.getString("portada").toString(),comment.getString("name").toString(),comment.getString("description").toString()));
         }
     }
 }
