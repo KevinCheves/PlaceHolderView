@@ -23,7 +23,7 @@ import com.mindorks.placeholderview.annotations.View;
 public class clvolumen {
 
     @View(R.id.imagecover)
-    public ImageView imageView;
+    public ImageView imagecover;
     @View(R.id.txtTitle)
     public TextView title;
     @View(R.id.txtVol)
@@ -32,13 +32,15 @@ public class clvolumen {
     public TextView num;
     @View(R.id.txtPublished)
     public TextView published;
+    @View(R.id.txtid)
+    public TextView id;
     @Position
     int position;
-    public String mUlr,mtitle, mvol, mnum, mpubli, mNameclick;
+    public String mUlr,mtitle, mvol, mnum, mpubli, mid;
     public Context mContext;
     public PlaceHolderView mPlaceHolderView;
 
-    public clvolumen(Context context, PlaceHolderView placeHolderView, String ulr, String title, String vol, String num, String publicad) {
+    public clvolumen(Context context, PlaceHolderView placeHolderView, String ulr, String title, String vol, String num, String publicad, String id) {
         mContext = context;
         mPlaceHolderView = placeHolderView;
         mUlr = ulr;
@@ -46,16 +48,25 @@ public class clvolumen {
         mvol = vol;
         mnum = num;
         mpubli = publicad;
+        mid = id;
     }
 
     @Resolve
     protected void onResolved() {
-        Glide.with(mContext).load(mUlr).into(imageView);
+        Glide.with(mContext).load(mUlr).into(imagecover);
         title.setText(mtitle);
         vol.setText(mvol);
         num.setText(mnum);
         published.setText(mpubli);
+        id.setText(mid);
     }
-
+    @Click(R.id.imagecover)
+    protected void onImageViewClick2(){
+        Intent intent = new Intent(mContext, ArticulosActivity.class);
+        Bundle b = new Bundle();
+        b.putString("id", id.getText().toString());
+        intent.putExtras(b);
+        mContext.startActivity(intent);
+    }
 
 }

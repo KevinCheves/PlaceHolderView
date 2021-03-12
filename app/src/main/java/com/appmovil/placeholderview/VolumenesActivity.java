@@ -37,7 +37,7 @@ public class VolumenesActivity extends AppCompatActivity implements Asynchtask {
         for(int i=0; i< JSONlista.length();i++){
             JSONObject comment=  JSONlista.getJSONObject(i);
             mGalleryView
-                    .addView(new clvolumen(this.getApplicationContext(), mGalleryView,comment.getString("cover").toString(), comment.getString("title").toString(),comment.getString("volume").toString(),comment.getString("number").toString(), comment.getString("date_published").toString()));
+                    .addView(new clvolumen(this.getApplicationContext(), mGalleryView,comment.getString("cover").toString(), comment.getString("title").toString(),comment.getString("volume").toString(),comment.getString("number").toString(), comment.getString("date_published").toString(),comment.getString("issue_id").toString()));
         }
     }
 }
