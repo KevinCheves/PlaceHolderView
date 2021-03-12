@@ -33,32 +33,35 @@ import com.mindorks.placeholderview.annotations.View;
     public TextView name;
     @View(R.id.txtdescription)
     public TextView description;
+    @View(R.id.txtid)
+    public TextView id;
     @Position
     int position;
-    public String mUlr,mName,mDescription,mNameclick;
+    public String mUlr,mName,mDescription,mNameclick, mId;
     public Context mContext;
     public PlaceHolderView mPlaceHolderView;
 
-    public GalleryImage(Context context, PlaceHolderView placeHolderView, String ulr, String name1, String description1) {
+    public GalleryImage(Context context, PlaceHolderView placeHolderView, String ulr, String name1, String description1, String issue_id) {
         mContext = context;
         mPlaceHolderView = placeHolderView;
         mUlr = ulr;
         mName=name1;
         mDescription = description1;
+        mId = issue_id;
     }
-
 
     @Resolve
     protected void onResolved() {
         Glide.with(mContext).load(mUlr).into(imageView);
         name.setText(mName);
         description.setText(mDescription);
+        id.setText(mId);
     }
     @Click(R.id.imageview)
     protected void onImageViewClick(){
        Intent intent = new Intent(mContext, VolumenesActivity.class);
         Bundle b = new Bundle();
-        b.putString("title", "mName.replace(\"Revista \", \"\").toLowerCase();");
+        b.putString("id", id.getText().toString());
         intent.putExtras(b);
         mContext.startActivity(intent);
     }

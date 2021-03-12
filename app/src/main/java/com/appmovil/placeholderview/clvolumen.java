@@ -38,7 +38,7 @@ public class clvolumen {
     public Context mContext;
     public PlaceHolderView mPlaceHolderView;
 
-    public clvolumen(Context context, PlaceHolderView placeHolderView, String ulr, String title, String vol, String num, String publicad, String nameclick) {
+    public clvolumen(Context context, PlaceHolderView placeHolderView, String ulr, String title, String vol, String num, String publicad) {
         mContext = context;
         mPlaceHolderView = placeHolderView;
         mUlr = ulr;
@@ -46,31 +46,16 @@ public class clvolumen {
         mvol = vol;
         mnum = num;
         mpubli = publicad;
-        mNameclick = nameclick;
-        //mNameclick = nameclick.replace("Revista ", "").toLowerCase();
     }
-
 
     @Resolve
     protected void onResolved() {
         Glide.with(mContext).load(mUlr).into(imageView);
-        title.setText("Titulo: "+mtitle);
-        vol.setText("Volumen: "+mvol);
-        num.setText("Número: "+mnum);
-        published.setText("Publicación: "+mpubli);
-    }
-    @Click(R.id.imageview)
-    protected void onImageViewClick(){
-        Intent intent = new Intent(mContext, VolumenesActivity.class);
-        Bundle b = new Bundle();
-        b.putString("usr", "");
-        intent.putExtras(b);
-        mContext.startActivity(intent);
+        title.setText(mtitle);
+        vol.setText(mvol);
+        num.setText(mnum);
+        published.setText(mpubli);
     }
 
-    @LongClick(R.id.imageview)
-    protected void onLongClick(){
-        mPlaceHolderView.removeView(this);
-    }
 
 }
